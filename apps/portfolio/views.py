@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import Http404
 from portfolio.models import Category, Project
-from django.template import RequestContext, loader
 
 
 def index(request):
@@ -13,9 +12,17 @@ def index(request):
 
 
 def project_details(request, category_nick, project_nick):
-    return HttpResponse("You are looking at project %s." % project_nick)
+    try:
+        project = Project.objects.get(nick=project_nick)
+    except Project.DoesNotExist:
+        raise Http404("Project %s doesn't exist" % project_nick)
+    return render(request, 'portfolio/project_details.html', {'project': project})
 
 
 def category_index(request, category_nick):
-    return HttpResponse("You are looking at projects in category %s." % category_nick)
+    try:
+        category = Category.objects.get(nick=category_nick)
+    except Category.DoesNotExist:
+        raise Http404("Category %s doesn't exist" % category_nick)
+    return render(request, 'portfolio/category_index.html', {'category': category})
 

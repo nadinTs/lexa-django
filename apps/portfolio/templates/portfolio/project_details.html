@@ -1,0 +1,9 @@
+<h1>{{ project.title }}</h1>
+<p>{{ project.lead }}</p>
+<ul>
+    {% for art in project.artifact_set.all %}
+        <li>
+            <a><img src="{{ art.image.url }}" width="100" height="100">{{ art.description }}</a>
+        </li>
+    {% endfor %}
+</ul>
