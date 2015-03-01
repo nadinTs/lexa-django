@@ -6,11 +6,10 @@ from django.template import RequestContext, loader
 
 def index(request):
     categories = Category.objects.all()
-    template = loader.get_template('portfolio/index.html')
-    context = RequestContext(request, {
+    data = {
         'categories': categories,
-    })
-    return HttpResponse(template.render(context))
+    }
+    return render(request, 'portfolio/index.html', data)
 
 
 def project_details(request, category_nick, project_nick):
