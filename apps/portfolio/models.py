@@ -23,6 +23,7 @@ class Project(models.Model):
 class Artifact(models.Model):
     project = models.ForeignKey(Project)
     description = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='images')
 
     def __unicode__(self):
         return self.description
