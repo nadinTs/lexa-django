@@ -1,9 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from portfolio.models import Category, Project
+from django.template import RequestContext, loader
 
 
 def index(request):
-    return HttpResponse("Hello, world!")
+    categories = Category.objects.all()
+    template = loader.get_template('portfolio/index.html')
+    context = RequestContext(request, {
+        'categories': categories,
+    })
+    return HttpResponse(template.render(context))
 
 
-# Create your views here.
+def project_details(request, category_nick, project_nick):
+    return HttpResponse("You are looking at project %s." % project_nick)
+
+
+def category_index(request, category_nick):
+    return HttpResponse("You are looking at projects in category %s." % category_nick)
+

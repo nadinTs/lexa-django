@@ -1,0 +1,11 @@
+{% if categories %}
+    <ul>
+        {% for category in categories %}
+        <li>
+            <a href="/portfolio/{{ category.nick }}">{{ category.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Нет ни одной рубрики</p>
+{% endif %}
