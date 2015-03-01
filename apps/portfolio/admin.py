@@ -11,6 +11,7 @@ class ProjectAdmin(admin.ModelAdmin):
     inlines = [ArtifactInline]
     list_filter = ['pub_date']
     search_fields = ['title', 'lead']
+    list_display = ('title', 'pub_date')
 
 
 admin.site.register(Category)
