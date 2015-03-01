@@ -1,8 +1,9 @@
+<h1>Портфолио</h1>
 {% if categories %}
     <ul>
         {% for category in categories %}
         <li>
-            <a href="/portfolio/{{ category.nick }}">{{ category.title }}</a>
+            <a href="{% url 'portfolio:category_index' category_nick=category.nick %}">{{ category.title }}</a>
         </li>
         {% endfor %}
     </ul>

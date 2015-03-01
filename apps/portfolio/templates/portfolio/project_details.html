@@ -3,7 +3,7 @@
 <ul>
     {% for art in project.artifact_set.all %}
         <li>
-            <a><img src="{{ art.image.url }}" width="100" height="100">{{ art.description }}</a>
+            <img src="{{ art.image.url }}" width="100" height="100">{{ art.description }}
         </li>
     {% endfor %}
 </ul>
