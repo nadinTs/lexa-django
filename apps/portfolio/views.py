@@ -16,7 +16,13 @@ def project_details(request, category_nick, project_nick):
         project = Project.objects.get(nick=project_nick)
     except Project.DoesNotExist:
         raise Http404("Project %s doesn't exist" % project_nick)
-    return render(request, 'portfolio/project_details.html', {'project': project})
+    categories = Category.objects.all()
+    data = {
+        'categories': categories,
+        'project': project,
+        'category_nick': category_nick
+    }
+    return render(request, 'portfolio/project_details.html', data)
 
 
 def category_index(request, category_nick):

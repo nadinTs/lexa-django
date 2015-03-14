@@ -1,4 +1,7 @@
-<h1>Портфолио</h1>
+{% extends "portfolio/base.html" %}
+{% block title %}Портфолио{% endblock %}
+
+{% block content %}
 {% if categories %}
     <ul>
         {% for category in categories %}
@@ -10,3 +13,4 @@
 {% else %}
     <p>Нет ни одной рубрики</p>
 {% endif %}
+{% endblock %}

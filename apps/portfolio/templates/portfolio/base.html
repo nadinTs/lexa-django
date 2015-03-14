@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <title>Designer</title>
+    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="/static/portfolio/css/style.css" type="text/css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300" type="text/css">
     <script type="text/javascript" src="/static/portfolio/js/jquery-1.11.2.min.js"></script>
@@ -42,23 +42,15 @@
     </nav>
     <!--main-->
     <main>
-        <section>
-            <div id="slider">
-                <img alt="" src="img/pic_200.jpg" width="1024" height="576">
-                <img alt="" src="img/ny_200.jpg" width="1024" height="576">
-                <img alt="" src="img/ny2_200.jpg" width="1024" height="576">
-                <img alt="" src="img/sidney_200.jpg" width="1024" height="576">
-                <img alt="" src="img/bridge_200.jpg" width="1024" height="576">
-            </div>
-        </section>
+        {% block content %} {% endblock %}
         <!--bottom menu -->
         <nav>
-            <ul class="bottom-menu">
-                <li><a href="interiors.html">интерьер</a></li>
-                <li><a href="architecture.html">архитектура</a></li>
-                <li><a href="graphics.html">графика</a></li>
-                <li><a href="landscape.html">ландшафт</a></li>
-                <li><a href="animation.html">анимация</a></li>
+            <ul class="bottom-menu" >
+                {% for category in categories %}
+                <li {% if category_nick = category.nick %} class="active" {% endif %}>
+                    <a href="{% url 'portfolio:category_index' category_nick=category.nick %}">{{ category.title }}</a>
+                </li>
+                {% endfor %}
             </ul>
         </nav>
     </main>

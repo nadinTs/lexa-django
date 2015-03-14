@@ -1,4 +1,8 @@
-<h1>{{ project.title }}</h1>
+{% extends "portfolio/base.html" %}
+
+{% block title %}{{ project.title }}{% endblock %}
+{% block content %}
+<h1>{{ project.category}} :: {{ project.title }}</h1>
 <p>{{ project.lead }}</p>
 <ul>
     {% for art in project.artifact_set.all %}
@@ -7,3 +11,4 @@
         </li>
     {% endfor %}
 </ul>
+{% endblock %}
