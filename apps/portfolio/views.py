@@ -26,3 +26,6 @@ def category_index(request, category_nick):
         raise Http404("Category %s doesn't exist" % category_nick)
     return render(request, 'portfolio/category_index.html', {'category': category})
 
+def base(request):
+    return render(request, 'portfolio/base.html')
+
