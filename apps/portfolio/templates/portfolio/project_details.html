@@ -1,14 +1,36 @@
 {% extends "portfolio/base.html" %}
-
+{% block head %}
+    <link rel="stylesheet" href="/static/portfolio/css/bottom.css">
+    <link rel="stylesheet" href="/static/portfolio/css/base.css" type="text/css">
+    <script type="text/javascript" src="/static/portfolio/js/jquery.jcarousel.min.js"></script>
+    <script type="text/javascript" src="/static/portfolio/js/jquery.pikachoose.min.js"></script>
+    <script type="text/javascript" src="/static/portfolio/js/jquery.touchwipe.min.js"></script>
+   <script language="JavaScript">
+        $(document).ready(
+                function(){
+                    $("#pikame").PikaChoose({
+                        carousel: true,
+                        text: {previous:"" , next: ""},
+                        carouselOptions:{
+                             wrap:'circular'
+                        }
+                    });
+                });
+    </script>
+{% endblock %}
 {% block title %}{{ project.title }}{% endblock %}
 {% block content %}
 <h1>{{ project.category}} :: {{ project.title }}</h1>
 <p>{{ project.lead }}</p>
-<ul>
-    {% for art in project.artifact_set.all %}
-        <li>
-            <img src="{{ art.image.url }}" width="100" height="100">{{ art.description }}
-        </li>
-    {% endfor %}
-</ul>
+<section>
+    <div class="pikachoose">
+        <ul id="pikame" class="jcarousel-skin-pika">
+            {% for art in project.artifact_set.all %}
+            <li>
+                <img src="{{ art.image.url }}" width="1024" height="576"><span>{{ art.description }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
 {% endblock %}
