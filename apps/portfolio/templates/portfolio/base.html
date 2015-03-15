@@ -26,13 +26,13 @@
         <ul id="menu">
             <li><a href="about.html">о нас</a></li>
             <li>
-                <a href="portfolio.html">портфолио</a>
+                <a href="/portfolio/">портфолио</a>
                 <ul>
-                    <li><a href="interiors.html">интерьеры</a></li>
-                    <li><a href="architecture.html">архитектура</a></li>
-                    <li><a href="graphics.html">графика</a></li>
-                    <li><a href="landscape.html">ландшафт</a></li>
-                    <li><a href="animation.html">анимация</a></li>
+                {% for category in categories %}
+                    <li>
+                        <a href="{% url 'portfolio:category_index' category_nick=category.nick %}">{{ category.title }}</a>
+                    </li>
+                {% endfor %}
                 </ul>
             </li>
             <li><a href="contacts.html">контакты</a></li>
